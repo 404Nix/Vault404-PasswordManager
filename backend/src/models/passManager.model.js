@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import crypto from "crypto";
 import { ALGORITHM } from "../constant.js";
-import conf from "../conf";
+import conf from "../conf/index.js";
 
 function encryptPassword(password) {
     const iv = crypto.randomBytes(16);
