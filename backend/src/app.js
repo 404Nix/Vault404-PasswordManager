@@ -2,6 +2,7 @@ import express, { urlencoded } from "express";
 import cors from "cors";
 import conf from "./conf/config.js";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 import userRoute from "./routes/user.route.js";
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(
 );
 app.use(express.static("public"));
 app.use(morgan("dev"));
+app.use(cookieParser());
 
 //routes
 app.use("/api/auth", userRoute);

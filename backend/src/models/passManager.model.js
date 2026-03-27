@@ -39,7 +39,7 @@ const passManagerSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"],
     },
-});
+}, { timestamps: true });
 
 passManagerSchema.pre("save", function () {
     if(this.isModified("password")) {
