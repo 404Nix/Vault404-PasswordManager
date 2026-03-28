@@ -3,7 +3,7 @@ const requiredKeys = {
     CORS_ORIGIN: process.env.CORS_ORIGIN,
     ENCRYPTION_KEY: process.env.ENCRYPTION_KEY,
     jwtSecret: process.env.jwtSecret,
-    expiresIn: process.env.expiresIn,
+    accessTokenExpiresIn: process.env.accessTokenExpiresIn,
     refreshTokenExpiresIn: process.env.refreshTokenExpiresIn,
 };
 
@@ -17,7 +17,7 @@ const conf = {
     CORS_ORIGIN: String(process.env.CORS_ORIGIN.split(",")),
     ENCRYPTION_KEY: String(process.env.ENCRYPTION_KEY),
     jwtSecret: String(process.env.jwtSecret),
-    expiresIn: String(process.env.expiresIn),
+    accessTokenExpiresIn: String(process.env.accessTokenExpiresIn),
     refreshTokenExpiresIn: String(process.env.refreshTokenExpiresIn),
 };
 

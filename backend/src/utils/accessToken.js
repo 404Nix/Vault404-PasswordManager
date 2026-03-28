@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 const generateAccessToken = (userId, sessionId) => {
 
     return jwt.sign({ id: userId, sessionId }, conf.jwtSecret, {
-        expiresIn: conf.expiresIn,
+        expiresIn: conf.accessTokenExpiresIn,
     });
 };
 
