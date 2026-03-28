@@ -17,7 +17,7 @@ function decryptPassword(password) {
   return decrypted.toString();
 }
 
-const passManagerSchema = new mongoose.Schema({
+const passwordManagerSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -41,14 +41,14 @@ const passManagerSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-passManagerSchema.pre("save", function () {
+passwordManagerSchema.pre("save", function () {
     if(this.isModified("password")) {
         this.password = encryptPassword(this.password);
     }
 })
 
-passManagerSchema.methods.decryptPassword = function() {
+passwordManagerSchema.methods.decryptPassword = function() {
     return decryptPassword(this.password);
 }
 
-export const PassManager = mongoose.model("PassManager", passManagerSchema);
+export const PasswordManager = mongoose.model("PassManager", passwordManagerSchema);
