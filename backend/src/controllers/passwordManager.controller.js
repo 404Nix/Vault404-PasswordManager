@@ -58,3 +58,29 @@ export const getPasswordById = async (req, res) => {
         },
     });
 };
+
+export const updatePassword = async (req, res) => {
+    const { id } = req.user;
+    const { id: passId } = req.params;
+    const { username, password } = req.body;
+
+    const updatePassword = await PasswordManager.findOne({
+        userId: id,
+        _id: passId,
+    });
+
+    if (!updatePassword) {
+        return res.status(401).json({
+            message: "Error While Updating Please Try Again!",
+        });
+    }
+
+    if (username) record.username = username;
+    if (password) record.password = password;
+
+    await record.save();
+
+    res.status(201).json({
+        message: "Username And Password Updated Successfully!",
+    });
+};
