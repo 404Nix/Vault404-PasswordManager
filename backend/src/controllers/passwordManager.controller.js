@@ -75,10 +75,10 @@ export const updatePassword = async (req, res) => {
         });
     }
 
-    if (username) record.username = username;
-    if (password) record.password = password;
+    if (username) updatePassword.username = username;
+    if (password) updatePassword.password = password;
 
-    await record.save();
+    await updatePassword.save();
 
     res.status(201).json({
         message: "Username And Password Updated Successfully!",
