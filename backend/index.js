@@ -4,7 +4,6 @@ import conf from "./src/conf/config.js";
 import connectDB from "./src/db/index.js";
 import dns from "dns";
 
-console.log(dns.getServers());
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 
