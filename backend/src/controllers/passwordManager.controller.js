@@ -17,7 +17,7 @@ export const savePassword = async (req, res) => {
             message: "Password saved/secured successfully!",
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -39,7 +39,7 @@ export const listPasswords = async (req, res) => {
             passwords: passwords,
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -67,7 +67,7 @@ export const getPasswordById = async (req, res) => {
             },
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -97,7 +97,7 @@ export const updatePassword = async (req, res) => {
             message: "Username And Password Updated Successfully!",
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -120,6 +120,6 @@ export const deletePassword = async (req, res) => {
             message: "Entry Deleted Successfully!",
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };

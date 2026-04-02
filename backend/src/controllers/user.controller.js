@@ -6,6 +6,7 @@ import generateRefreshToken from "../utils/refreshToken.js";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
+import { PasswordManager } from "../models/passwordManager.model.js";
 
 export const registerUser = async (req, res) => {
     try {
@@ -59,7 +60,7 @@ export const registerUser = async (req, res) => {
             accessToken,
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -114,7 +115,7 @@ export const loginUser = async (req, res) => {
             accessToken,
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -133,7 +134,7 @@ export const getMe = async (req, res) => {
             },
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -187,7 +188,7 @@ export const refreshToken = async (req, res) => {
             accessToken,
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -228,7 +229,7 @@ export const logOut = async (req, res) => {
             message: "Logged Out successfully!",
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -262,6 +263,48 @@ export const logOutAll = async (req, res) => {
             message: "Logged Out from All Devices Successfully!",
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
+    }
+};
+
+export const deleteUserAccount = async (req, res) => {
+    try {
+        const { id } = req.user;
+
+        await PasswordManager.deleteMany({
+            userId: id,
+        });
+
+        await Session.updateMany(
+            {
+                userId: id,
+                revoked: false,
+            },
+            {
+                revoked: true,
+            },
+        );
+
+        const deleteUser = await User.findByIdAndDelete({
+            _id: id,
+        });
+
+        if (!deleteUser) {
+            return res.status(401).json({
+                message: "Error While Deleting Account Please Try Again!",
+            });
+        }
+
+        res.clearCookie("refreshToken", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+        });
+
+        res.status(200).json({
+            message: "Account Deleted Successfully!",
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
 };
