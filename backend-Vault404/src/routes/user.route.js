@@ -8,8 +8,11 @@ import {
     logOutAll,
     refreshToken,
     registerUser,
+    updatePassword,
+    updateProfile,
+    getActiveSessions,
 } from "../controllers/user.controller.js";
-import { validate, validateLogin, validateRegister } from "../utils/validators.js";
+import { validate, validateLogin, validateRegister, validateUpdatePassword, validateUpdateProfile } from "../utils/validators.js";
 
 const router = express.Router();
 
@@ -22,6 +25,11 @@ router.get("/refresh-token", refreshToken);
 
 router.post("/logout", requireAuth, logOut);
 router.post("/logout-all", requireAuth, logOutAll);
+
+router.put("/update-password", requireAuth, validateUpdatePassword, validate, updatePassword);
+router.put("/update-profile", requireAuth, validateUpdateProfile, validate, updateProfile);
+
+router.get("/sessions", requireAuth, getActiveSessions);
 
 router.delete("/delete-user", requireAuth, deleteUserAccount);
 

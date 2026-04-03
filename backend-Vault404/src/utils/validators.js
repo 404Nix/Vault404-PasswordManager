@@ -31,3 +31,24 @@ export const validateLogin = [
     body("email").isEmail().withMessage("Invalid email!"),
     body("password").notEmpty().withMessage("Password is required!"),
 ];
+
+export const validateUpdatePassword = [
+    body("currentPassword").notEmpty().withMessage("Current password is required!"),
+    body("newPassword")
+        .isLength({ min: 8 })
+        .withMessage("New password must be at least 8 characters!"),
+];
+
+export const validateUpdateProfile = [
+    body("name")
+        .optional()
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Name cannot be empty!"),
+    body("email")
+        .optional()
+        .isEmail()
+        .withMessage("Invalid email!")
+        .normalizeEmail(),
+];

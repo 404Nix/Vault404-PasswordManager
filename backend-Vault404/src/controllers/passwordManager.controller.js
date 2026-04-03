@@ -34,6 +34,11 @@ export const listPasswords = async (req, res) => {
             });
         }
 
+        // For legacy items that don't have a strength stored yet
+        // we audit them on the fly if needed (or just let the default 'medium' take over)
+        // Since we have the decryption logic in the model, we could technically audit them all here.
+        // But for now, we'll just return them as is, and the model's new pre-save will handle any updates.
+
         res.status(200).json({
             message: "Passwords Fetched Successfully!",
             passwords: passwords,
