@@ -138,7 +138,7 @@ const LandingPage = () => {
 
             <div className="pt-2">
               <div className="w-full h-12 rounded-xl border border-success/30 bg-success/5 hover:bg-success/10 transition-all flex items-center justify-center text-[10px] font-black tracking-[0.3em] text-success uppercase cursor-pointer">
-                + ADD_NEW_VAULT_NODE
+                + ADD YOUR CREADENTIALS
               </div>
             </div>
           </div>
