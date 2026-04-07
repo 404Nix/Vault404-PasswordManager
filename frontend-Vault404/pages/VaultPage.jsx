@@ -195,12 +195,18 @@ const VaultPage = () => {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: { delay: i * 0.05, duration: 0.3, ease: 'easeOut' },
     }),
+    exit: { 
+      opacity: 0, 
+      scale: 0.9, 
+      transition: { duration: 0.2, ease: 'easeIn' } 
+    },
   };
 
   return (
@@ -300,7 +306,8 @@ const VaultPage = () => {
         </div>
       ) : filteredItems.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map((item, index) => {
+          <AnimatePresence mode="popLayout">
+            {filteredItems.map((item, index) => {
             const isRevealed = !!decryptedCache[item._id];
             const isRevealing = !!revealingIds[item._id];
             return (
@@ -310,6 +317,7 @@ const VaultPage = () => {
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
+                exit="exit"
                 layout
                 className="glass p-6 rounded-2xl border border-border hover:border-accentPrimary/50 transition-all duration-300 group"
               >
@@ -418,6 +426,7 @@ const VaultPage = () => {
               </motion.div>
             );
           })}
+          </AnimatePresence>
         </div>
       ) : (
         <motion.div

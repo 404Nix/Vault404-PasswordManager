@@ -1,0 +1,10 @@
+{
+  "name": "vault404-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "cd frontend-Vault404 && npm run dev",
+    "dev:backend": "cd backend-Vault404 && npm run dev",
+    "build:frontend": "cd frontend-Vault404 && npm run build"
+  }
+}

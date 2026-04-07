@@ -67,7 +67,7 @@ const Sidebar = () => {
         )}>
           <div className="flex items-center">
             <img
-              src="/assests/vault404_logo.png"
+              src="/assets/vault404_logo.png"
               alt="Vault404 Logo"
               className={clsx("h-10 w-auto object-contain transition-all", !sidebarOpen && "h-8")}
             />
