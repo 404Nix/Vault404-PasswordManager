@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import AppRoutes from './AppRoutes';
-import { initializeAuth } from './features/auth/authSlice';
+import { initializeAuth } from './src/features/auth/authSlice';
 import { Shield } from 'lucide-react';
 
 function App() {

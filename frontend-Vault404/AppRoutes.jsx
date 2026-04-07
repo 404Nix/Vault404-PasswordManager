@@ -1,13 +1,13 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import AppLayout from './components/layout/AppLayout';
-import LandingPage from './pages/LandingPage';
-import AuthPage from './pages/AuthPage';
-import DashboardPage from './pages/DashboardPage';
-import VaultPage from './pages/VaultPage';
-import ProfilePage from './pages/ProfilePage';
-import SettingsPage from './pages/SettingsPage';
+import AppLayout from './src/components/layout/AppLayout';
+import LandingPage from './src/pages/LandingPage';
+import AuthPage from './src/pages/AuthPage';
+import DashboardPage from './src/pages/DashboardPage';
+import VaultPage from './src/pages/VaultPage';
+import ProfilePage from './src/pages/ProfilePage';
+import SettingsPage from './src/pages/SettingsPage';
 
 const pageTransition = {
   initial: { opacity: 0, y: 12 },
