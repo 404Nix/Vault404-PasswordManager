@@ -1,0 +1,14 @@
+services:
+  vault404:
+    build:
+      context: .
+      dockerfile: dockerfile
+      args:
+        - VITE_API_URL=http://localhost:4000/api
+    ports:
+      - "4000:3000"  # Local port 4000 -> Container port 3000
+    env_file:
+      - ./backend-Vault404/.env
+    environment:
+      - PORT=3000    # Ensure the app inside container knows to listen on 3000
+    restart: unless-stopped

@@ -9,7 +9,8 @@ export const initializeAuth = createAsyncThunk(
   'auth/initializeAuth',
   async (_, { rejectWithValue }) => {
     try {
-      const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+      const baseURL = import.meta.env.VITE_API_URL;
+      
       const { data } = await axios.get(`${baseURL}/auth/refresh-token`, {
         withCredentials: true,
       });

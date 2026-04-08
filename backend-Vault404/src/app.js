@@ -14,22 +14,36 @@ import mongoSanitize from "express-mongo-sanitize";
 import xss from "xss-clean";
 
 const app = express();
+app.set("trust proxy", 1);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "../public")));
 
 app.use(
-    helmet({
-        crossOriginResourcePolicy: { policy: "cross-origin" },
-        contentSecurityPolicy: {
-            directives: {
-                ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-                "connect-src": ["'self'", "https://cdn.jsdelivr.net"],
-                "img-src": ["'self'", "data:", "https://cdn.simpleicons.org"],
-            },
-        },
-    }),
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "connect-src": [
+          "'self'",
+          "https://cdn.jsdelivr.net",
+
+          // ✅ LOCAL DEV
+          "http://localhost:3000",
+          "http://localhost:4000",
+          "http://127.0.0.1:3000",
+          "http://127.0.0.1:4000",
+
+          // ✅ PROD
+          "https://vault404.app",
+          "https://vault404-app.jollyriver-e5985e05.uaenorth.azurecontainerapps.io"
+        ],
+        "img-src": ["'self'", "data:", "https://cdn.simpleicons.org"],
+      },
+    },
+  }),
 );
 
 app.use(
